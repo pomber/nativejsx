@@ -18,7 +18,7 @@ transformers.JSXAttribute = (node, state) => {
     : node.value
 
   if (name.startsWith('on')) {
-    transform = compositions.addEventListener(state.name, name.substring(2).toLowerCase(), value)
+    transform = compositions.addEventListener(state.name, name, value);
   } else if (name === 'style') {
     if (transformers.INLINE_NATIVEJSX_HELPERS) {
       transform = compositions.setStylesInline([
