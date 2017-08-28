@@ -125,16 +125,23 @@ compositions.setStylesModule = (varargs) => {
 }
 
 compositions.addEventListener = (variable, event, expression) => {
-  return generators.expressionStatement(
-    generators.callExpression(
-      generators.member(
-        generators.identifier(variable),
-        generators.identifier('addEventListener')
-      ),
-      [generators.literal(event), expression]
-    )
-  )
-}
+  return generators.assigns(
+    generators.member(
+      generators.identifier(variable),
+      generators.identifier(event.toLowerCase())
+    ),
+    expression
+  );
+  // return generators.expressionStatement(
+  //   generators.callExpression(
+  //     generators.member(
+  //       generators.identifier(variable),
+  //       generators.identifier('addEventListener')
+  //     ),
+  //     [generators.literal(event), expression]
+  //   )
+  // )
+};
 
 compositions.appendChild = (parent, child) => {
   return generators.expressionStatement(
